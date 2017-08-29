@@ -31,6 +31,8 @@ namespace SupplierList
         {
             // Add framework services.
             services.AddMvc();
+
+            // Configure Razor lookup paths
             services.Configure<RazorViewEngineOptions>(options =>
             {
                 options.ViewLocationExpanders.Add(new FeatureLocationExpander());
