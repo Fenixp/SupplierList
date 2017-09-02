@@ -9,6 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.Razor;
 using SupplierList.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using SupplierList.Data.Model;
+using SupplierList.Web.Infrastructure;
+using SupplierList.Business.Interface.Infrastructure;
+using SupplierList.Business.Interface.Features.Commands;
 
 namespace SupplierList
 {
@@ -29,18 +34,14 @@ namespace SupplierList
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            services.AddMvc();
-
-            // Configure Razor lookup paths
-            services.Configure<RazorViewEngineOptions>(options =>
-            {
-                options.ViewLocationExpanders.Add(new FeatureLocationExpander());
-            });
+            CompositionRootConfig.RegisterAll(services, Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, 
+            IHostingEnvironment env, 
+            ILoggerFactory loggerFactory,
+            ICommandHandler<AddGroupsFromSeedCommand> addGroupsFromSeedCommand)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -63,6 +64,8 @@ namespace SupplierList
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            addGroupsFromSeedCommand.Handle(new AddGroupsFromSeedCommand { SeedFileLocation = Configuration["DataSeedPath"] });        
         }
     }
 }

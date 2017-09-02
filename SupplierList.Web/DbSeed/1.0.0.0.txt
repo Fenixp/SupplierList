@@ -1,0 +1,10 @@
+{
+  "Version": "1.0.0.0"
+  "Objects": 
+  [
+    { "GroupId": "1", "Name": "Cleaners" },
+    { "GroupId": "2", "Name": "Office supply (paper, envelopes, etc)" },
+    { "GroupId": "3", "Name": "Telephone service" },
+    { "GroupId": "4", "Name": "Security" }
+  ]
+}

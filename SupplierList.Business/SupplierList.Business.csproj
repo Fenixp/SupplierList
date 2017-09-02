@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SupplierList.Business.Interface\SupplierList.Business.Interface.csproj" />
+    <ProjectReference Include="..\SupplierList.Data\SupplierList.Data.csproj" />
   </ItemGroup>
 
 </Project>

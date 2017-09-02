@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\" />
+    <ProjectReference Include="..\SupplierList.Data\SupplierList.Data.csproj" />
   </ItemGroup>
 
 </Project>
