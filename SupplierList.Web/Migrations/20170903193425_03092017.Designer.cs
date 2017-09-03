@@ -8,9 +8,10 @@ using SupplierList.Data.Model;
 namespace SupplierList.Web.Migrations
 {
     [DbContext(typeof(SupplierContext))]
-    partial class SupplierContextModelSnapshot : ModelSnapshot
+    [Migration("20170903193425_03092017")]
+    partial class _03092017
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")

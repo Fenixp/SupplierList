@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using SupplierList.Business.Interface.Features.Commands;
+using SupplierList.Business.Interface.Features.Startup.Commands;
 using SupplierList.Business.Interface.Infrastructure;
 using SupplierList.Data.Model;
 using System;
@@ -8,13 +8,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace SupplierList.Business.Features.Commands
+namespace SupplierList.Business.Features.Startup.Commands
 {
     public class AddGroupsFromSeedCommandHandler : ICommandHandler<AddGroupsFromSeedCommand>
     {
         SupplierContext _context;
 
-        AddGroupsFromSeedCommandHandler(SupplierContext context)
+        public AddGroupsFromSeedCommandHandler(SupplierContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace SupplierList.Business.Features.Commands
 
             if (!_context.IsUpdateApplied(dbSeedObject.Version))
             {
-                _context.Groups.AddRange(dbSeedObject.Groups);
+                _context.CommitUpdate(dbSeedObject.Groups, dbSeedObject.Version);
             }
         }
     }

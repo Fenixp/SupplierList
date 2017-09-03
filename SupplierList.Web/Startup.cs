@@ -14,6 +14,7 @@ using SupplierList.Data.Model;
 using SupplierList.Web.Infrastructure;
 using SupplierList.Business.Interface.Infrastructure;
 using SupplierList.Business.Interface.Features.Commands;
+using SupplierList.Business.Features.Commands;
 
 namespace SupplierList
 {
@@ -35,6 +36,15 @@ namespace SupplierList
         public void ConfigureServices(IServiceCollection services)
         {
             CompositionRootConfig.RegisterAll(services, Configuration);
+
+            /*DbContextOptionsBuilder<SupplierContext> builder = new DbContextOptionsBuilder<SupplierContext>()
+                .UseSqlServer(Configuration["ConnectionString"], b => b.MigrationsAssembly("SupplierList.Web"));
+            
+
+            using (SupplierContext context = new SupplierContext(builder.Options))
+            {
+                AddGroupsFromSeedCommandHandler command = new AddGroupsFromSeedCommandHandler(context);
+            }*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

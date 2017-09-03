@@ -2,8 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SupplierList.Business.Features.Commands;
-using SupplierList.Business.Interface.Features.Commands;
+using SupplierList.Business.Features.Startup.Commands;
+using SupplierList.Business.Interface.Features.Startup.Commands;
 using SupplierList.Business.Interface.Infrastructure;
 using SupplierList.Data.Model;
 using SupplierList.Infrastructure;

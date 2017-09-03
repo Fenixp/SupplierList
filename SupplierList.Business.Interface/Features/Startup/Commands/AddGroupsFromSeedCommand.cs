@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SupplierList.Business.Interface.Features.Commands
+namespace SupplierList.Business.Interface.Features.Startup.Commands
 {
     public class AddGroupsFromSeedCommand
     {

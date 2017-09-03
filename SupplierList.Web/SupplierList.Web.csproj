@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="DbSeed\DataSeed.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SupplierList.Business.Interface\SupplierList.Business.Interface.csproj" />
     <ProjectReference Include="..\SupplierList.Business\SupplierList.Business.csproj" />
     <ProjectReference Include="..\SupplierList.Data\SupplierList.Data.csproj" />

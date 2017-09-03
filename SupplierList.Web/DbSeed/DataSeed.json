@@ -1,0 +1,17 @@
+{
+  "Version": "1.0.0.0",
+  "Groups": [
+    {
+      "Name": "Cleaners"
+    },
+    {
+      "Name": "Office supply (paper, envelopes, etc)"
+    },
+    {
+      "Name": "Telephone service"
+    },
+    {
+      "Name": "Security"
+    }
+  ]
+}
