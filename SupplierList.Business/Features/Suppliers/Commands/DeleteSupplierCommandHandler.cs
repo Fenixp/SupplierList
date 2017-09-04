@@ -22,6 +22,8 @@ namespace SupplierList.Business.Features.Suppliers.Commands
             _context.Suppliers.Remove(
                 _context.Suppliers.Single(x => x.SupplierId == command.SupplierId)
                 );
+
+            _context.SaveChanges();
         }
     }
 }

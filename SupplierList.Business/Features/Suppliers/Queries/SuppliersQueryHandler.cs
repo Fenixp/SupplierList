@@ -20,15 +20,16 @@ namespace SupplierList.Business.Features.Suppliers.Queries
 
         public IEnumerable<SupplierModel> Handle(SuppliersQuery query)
         {
-            return _context.Suppliers.Select(x => new SupplierModel
-            {
-                SupplierId = x.SupplierId,
-                Address = x.Address,
-                Email = x.Email,
-                Name = x.Name,
-                Phone = x.Phone,
-                GroupNames = x.Groups.Select(g => g.Group.Name)
-            });
+            return _context.Suppliers
+                .Where(x => query.GroupId.HasValue ? x.Groups.Any(g => g.Group.GroupId == query.GroupId) : true)
+                .Select(x => new SupplierModel
+                {
+                    SupplierId = x.SupplierId,
+                    Address = x.Address,
+                    Email = x.Email,
+                    Name = x.Name,
+                    Phone = x.Phone
+                });
         }
     }
 }

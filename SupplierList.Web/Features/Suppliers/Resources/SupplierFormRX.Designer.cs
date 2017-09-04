@@ -107,6 +107,15 @@ namespace SupplierList.Web.Features.Suppliers.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Group filter.
+        /// </summary>
+        public static string GroupFilter {
+            get {
+                return ResourceManager.GetString("GroupFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Groups.
         /// </summary>
         public static string Groups {

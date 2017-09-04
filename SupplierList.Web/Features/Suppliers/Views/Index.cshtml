@@ -4,7 +4,15 @@
 @{
     ViewData["Title"] = "Supplier list";
 }
-<td class="container-fluid">
+@using (Html.BeginForm("Index", "Suppliers", FormMethod.Post))
+{
+    <div class="form-inline">
+        <label asp-for="SelectedGroupId"></label>
+        <select asp-for="SelectedGroupId" asp-items="Model.Groups" class="form-control"></select>
+        <button type="submit" class="btn btn-primary form-control">@SupplierFormRX.Submit</button>
+    </div>
+}
+<div class="container-fluid">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -20,7 +28,6 @@
                 <th>
                     @SupplierFormRX.Phone
                 </th>
-                <th></th>
             </tr>
         </thead>
         @foreach (SupplierModel supplierModel in Model.Suppliers)
@@ -29,22 +36,28 @@
                 <td>
                     @supplierModel.Name
                 </td>
-                <td class="col-md-3">
+                <td>
                     @supplierModel.Address
                 </td>
-                <td class="col-md-3">
+                <td>
                     @supplierModel.Email
                 </td>
-                <td class="col-md-2">
+                <td>
                     @supplierModel.Phone
                 </td>
-                <td class="col-md-1">
+                <td class="btn-group">
                     <a asp-controller="Suppliers"
                        asp-action="EditSupplier"
                        asp-route-supplierId="@supplierModel.SupplierId"
                        class="btn btn-primary"
                        title="@SupplierFormRX.Edit">
                         <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a asp-controller="Suppliers"
+                       asp-action="DeleteSupplier"
+                       asp-route-supplierId="@supplierModel.SupplierId"
+                       class="btn btn-danger">
+                        <i class="glyphicon glyphicon-remove"></i>
                     </a>
                 </td>
             </tr>

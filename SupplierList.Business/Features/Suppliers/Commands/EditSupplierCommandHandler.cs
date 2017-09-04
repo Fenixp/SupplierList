@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace SupplierList.Business.Features.Suppliers.Commands
 {
@@ -19,11 +20,11 @@ namespace SupplierList.Business.Features.Suppliers.Commands
 
         public void Handle(EditSupplierCommand command)
         {
-            Supplier supplier = _context.Suppliers.Single(x => x.SupplierId == command.SupplierId);
+            Supplier supplier = _context.Suppliers
+                .Include(x => x.Groups)
+                .Single(x => x.SupplierId == command.SupplierId);
 
-            _context.GroupsSuppliersBridge.RemoveRange(
-                _context.GroupsSuppliersBridge.Where(x => command.GroupIds.Contains(x.GroupSupplierBridgeId))
-                );
+            _context.GroupsSuppliersBridge.RemoveRange(supplier.Groups);
 
             List<GroupSupplierBridge> supplierGroups = new List<GroupSupplierBridge>();
 

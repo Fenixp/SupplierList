@@ -8,8 +8,8 @@ using SupplierList.Data.Model;
 namespace SupplierList.Web.Migrations
 {
     [DbContext(typeof(SupplierContext))]
-    [Migration("20170903193425_03092017")]
-    partial class _03092017
+    [Migration("20170904184207_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

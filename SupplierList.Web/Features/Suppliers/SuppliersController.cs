@@ -39,11 +39,26 @@ namespace SupplierList.Web.Features.Suppliers
             _suppliersQueryHandler = suppliersQueryHandler;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             IndexModel model = new IndexModel
             {
-                Suppliers = _suppliersQueryHandler.Handle(new SuppliersQuery())
+                Suppliers = _suppliersQueryHandler.Handle(new SuppliersQuery()),
+                Groups = GetGroupsWithNullValue(_groupsQueryHandler.Handle(new GroupsQuery()))
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Index(IndexModel form)
+        {
+            IndexModel model = new IndexModel
+            {
+                Suppliers = _suppliersQueryHandler.Handle(new SuppliersQuery { GroupId = form.SelectedGroupId }),
+                SelectedGroupId = form.SelectedGroupId,
+                Groups = GetGroupsWithNullValue(_groupsQueryHandler.Handle(new GroupsQuery()))
             };
 
             return View(model);
@@ -117,6 +132,29 @@ namespace SupplierList.Web.Features.Suppliers
             });
 
             return RedirectToAction("Index");
+        }
+
+        public IActionResult DeleteSupplier(int supplierId)
+        {
+            _deleteSupplierCommandHandler.Handle(new DeleteSupplierCommand { SupplierId = supplierId });
+
+            return RedirectToAction("Index");
+        }
+
+        private IEnumerable<SelectListItem> GetGroupsWithNullValue(IEnumerable<GroupModel> groups)
+        {
+            List<SelectListItem> groupsList = _groupsQueryHandler.Handle(new GroupsQuery())
+                    .Select(x => new SelectListItem
+                    {
+                        Value = x.GroupId.ToString(),
+                        Text = x.Name
+                    }).ToList();
+
+            return groupsList.Prepend(new SelectListItem
+            {
+                Value = null,
+                Text = "-"
+            });
         }
     }
 }
