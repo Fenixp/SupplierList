@@ -27,15 +27,6 @@ namespace SupplierList
         public void ConfigureServices(IServiceCollection services)
         {
             CompositionRootConfig.RegisterAll(services, Configuration);
-
-            /*DbContextOptionsBuilder<SupplierContext> builder = new DbContextOptionsBuilder<SupplierContext>()
-                .UseSqlServer(Configuration["ConnectionString"], b => b.MigrationsAssembly("SupplierList.Web"));
-            
-
-            using (SupplierContext context = new SupplierContext(builder.Options))
-            {
-                AddGroupsFromSeedCommandHandler command = new AddGroupsFromSeedCommandHandler(context);
-            }*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +57,7 @@ namespace SupplierList
                     template: "{controller=Suppliers}/{action=Index}");
             });
 
+            // Seeds db with groups
             addGroupsFromSeedCommand.Handle(new AddGroupsFromSeedCommand { SeedFileLocation = Configuration["DataSeedPath"] });        
         }
     }

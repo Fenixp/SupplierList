@@ -20,6 +20,7 @@ namespace SupplierList.Business.Features.Suppliers.Queries
 
         public IEnumerable<SupplierModel> Handle(SuppliersQuery query)
         {
+            // When GroupId parameter has value, suppliers get filtered by groupId. When it's null, selects all.
             return _context.Suppliers
                 .Where(x => query.GroupId.HasValue ? x.Groups.Any(g => g.Group.GroupId == query.GroupId) : true)
                 .Select(x => new SupplierModel

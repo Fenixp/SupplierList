@@ -27,6 +27,9 @@ namespace SupplierList.Web.Infrastructure
             RegisterCustomServices(services);
         }
 
+        /// <summary>
+        /// Registers system services
+        /// </summary>
         private static void RegisterSystemServices(IServiceCollection services, IConfigurationRoot configuration)
         {
             // Add framework services.
@@ -44,6 +47,9 @@ namespace SupplierList.Web.Infrastructure
                 );
         }
 
+        /// <summary>
+        /// Register query and command handlers
+        /// </summary>
         private static void RegisterCustomServices(IServiceCollection services)
         {
             // Automatic registration? Committing decorator?

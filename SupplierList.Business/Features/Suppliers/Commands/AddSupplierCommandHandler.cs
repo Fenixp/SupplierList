@@ -21,6 +21,7 @@ namespace SupplierList.Business.Features.Suppliers.Commands
         {
             List<GroupSupplierBridge> supplierGroups = new List<GroupSupplierBridge>();
 
+            // Creates new many-to-many relations between supplier and groups. Unify within entity?
             if (command.GroupIds != null)
             foreach (int groupId in command.GroupIds)
             {

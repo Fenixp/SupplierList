@@ -24,11 +24,13 @@ namespace SupplierList.Business.Features.Suppliers.Commands
                 .Include(x => x.Groups)
                 .Single(x => x.SupplierId == command.SupplierId);
 
+            // Removes existing many-to-many relations between supplier and groups
             _context.GroupsSuppliersBridge.RemoveRange(supplier.Groups);
 
             List<GroupSupplierBridge> supplierGroups = new List<GroupSupplierBridge>();
 
-            if(command.GroupIds != null)
+            // Creates new many-to-many relations between supplier and groups. Unify within entity?
+            if (command.GroupIds != null)
             foreach (int groupId in command.GroupIds)
             {
                 Group group = _context.Groups.Single(x => x.GroupId == groupId);
