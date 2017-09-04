@@ -1,0 +1,12 @@
+﻿@using SupplierList.Business.Interface.Features.Suppliers.Models;
+@model SupplierList.Web.Features.Suppliers.Models.EditSupplierModel
+@{
+    ViewData["Title"] = "Add supplier";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm("AddSupplier", "Suppliers", FormMethod.Post))
+    {
+        @Html.Partial("_supplierForm", Model)
+    }
+</div>

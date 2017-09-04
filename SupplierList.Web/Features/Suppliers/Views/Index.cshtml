@@ -1,0 +1,58 @@
+﻿@using SupplierList.Web.Features.Suppliers.Resources;
+@using SupplierList.Business.Interface.Features.Suppliers.Models;
+@model SupplierList.Web.Features.Suppliers.Models.IndexModel
+@{
+    ViewData["Title"] = "Supplier list";
+}
+<td class="container-fluid">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @SupplierFormRX.Name
+                </th>
+                <th>
+                    @SupplierFormRX.Address
+                </th>
+                <th>
+                    @SupplierFormRX.Email
+                </th>
+                <th>
+                    @SupplierFormRX.Phone
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (SupplierModel supplierModel in Model.Suppliers)
+        {
+            <tr>
+                <td>
+                    @supplierModel.Name
+                </td>
+                <td class="col-md-3">
+                    @supplierModel.Address
+                </td>
+                <td class="col-md-3">
+                    @supplierModel.Email
+                </td>
+                <td class="col-md-2">
+                    @supplierModel.Phone
+                </td>
+                <td class="col-md-1">
+                    <a asp-controller="Suppliers"
+                       asp-action="EditSupplier"
+                       asp-route-supplierId="@supplierModel.SupplierId"
+                       class="btn btn-primary"
+                       title="@SupplierFormRX.Edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+    <div class="row">
+        <div class="col-md-2 pull-right">
+            <a asp-controller="Suppliers" asp-action="AddSupplier" class="btn btn-primary">@SupplierFormRX.AddSupplier</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@using SupplierList.Business.Interface.Features.Suppliers.Models;
+@model SupplierList.Web.Features.Suppliers.Models.EditSupplierModel
+@{
+    ViewData["Title"] = "Add supplier";
+}
+
+<div class="container-fluid">
+    @using (Html.BeginForm("EditSupplier", "Suppliers", FormMethod.Post))
+    {
+        <input asp-for="SupplierId" type="hidden" />
+        @Html.Partial("_supplierForm", Model)
+    }
+</div>

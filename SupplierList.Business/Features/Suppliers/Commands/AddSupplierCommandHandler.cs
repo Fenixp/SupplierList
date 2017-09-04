@@ -21,7 +21,8 @@ namespace SupplierList.Business.Features.Suppliers.Commands
         {
             List<GroupSupplierBridge> supplierGroups = new List<GroupSupplierBridge>();
 
-            foreach(int groupId in command.GroupIds)
+            if (command.GroupIds != null)
+            foreach (int groupId in command.GroupIds)
             {
                 Group group = _context.Groups.Single(x => x.GroupId == groupId);
 
@@ -39,6 +40,8 @@ namespace SupplierList.Business.Features.Suppliers.Commands
                 Phone = command.Phone,
                 Groups = supplierGroups
             };
+
+            _context.Suppliers.Add(supplier);
 
             _context.SaveChanges();
         }

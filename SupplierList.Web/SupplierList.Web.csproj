@@ -30,4 +30,19 @@
     <ProjectReference Include="..\SupplierList.Data\SupplierList.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Features\Suppliers\Resources\SupplierFormRX.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SupplierFormRX.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Features\Suppliers\Resources\SupplierFormRX.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SupplierFormRX.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

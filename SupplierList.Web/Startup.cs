@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc.Razor;
-using SupplierList.Infrastructure;
-using Microsoft.EntityFrameworkCore;
-using SupplierList.Data.Model;
 using SupplierList.Web.Infrastructure;
 using SupplierList.Business.Interface.Infrastructure;
-using SupplierList.Business.Interface.Features.Commands;
-using SupplierList.Business.Features.Commands;
+using SupplierList.Business.Interface.Features.Startup.Commands;
 
 namespace SupplierList
 {
@@ -72,7 +63,7 @@ namespace SupplierList
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Suppliers}/{action=Index}");
             });
 
             addGroupsFromSeedCommand.Handle(new AddGroupsFromSeedCommand { SeedFileLocation = Configuration["DataSeedPath"] });        
