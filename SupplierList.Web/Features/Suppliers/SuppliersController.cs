@@ -141,6 +141,12 @@ namespace SupplierList.Web.Features.Suppliers
             return RedirectToAction("Index");
         }
 
+        // Error handler pro produkci
+        public IActionResult Error()
+        {
+            return View();
+        }
+
         private IEnumerable<SelectListItem> GetGroupsWithNullValue(IEnumerable<GroupModel> groups)
         {
             List<SelectListItem> groupsList = _groupsQueryHandler.Handle(new GroupsQuery())

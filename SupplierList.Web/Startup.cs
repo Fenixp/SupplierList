@@ -45,7 +45,7 @@ namespace SupplierList
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Suppliers/Error");
             }
 
             app.UseStaticFiles();
