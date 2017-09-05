@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace SupplierList.Business.Features.Suppliers.Commands
 {
@@ -19,9 +20,13 @@ namespace SupplierList.Business.Features.Suppliers.Commands
 
         public void Handle(DeleteSupplierCommand command)
         {
-            _context.Suppliers.Remove(
-                _context.Suppliers.Single(x => x.SupplierId == command.SupplierId)
-                );
+            Supplier supplier = _context.Suppliers
+                .Include(x => x.Groups)
+                .Single(x => x.SupplierId == command.SupplierId);
+
+            // Removes existing many-to-many relations between supplier and groups
+            _context.GroupsSuppliersBridge.RemoveRange(supplier.Groups);
+            _context.Suppliers.Remove(supplier);
 
             _context.SaveChanges();
         }
